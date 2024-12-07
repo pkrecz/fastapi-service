@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from config.settings import settings
 from config import registry
+from config.settings import settings
 
 
 def start_application():
@@ -14,6 +14,7 @@ def start_application():
                                 "email": "pkrecz@poczta.onet.pl"})
     registry.create_tables()
     registry.load_routers(app)
+    registry.load_middleware(app)
     return app
 
 

@@ -1,5 +1,6 @@
 import logging
 from config.database import engine
+from config.middleware import CustomMiddleware
 
 
 # app_example imports ...
@@ -16,7 +17,12 @@ def create_tables():
 
 
 def load_routers(application):
-
     application.include_router(router=example_controlers.router,
                                 prefix="",
                                 tags=["Example"])
+    logger.info("Routers has been loaded.")
+
+
+def load_middleware(application):
+    application.add_middleware(CustomMiddleware)
+    logger.info("Middleware has been added.")

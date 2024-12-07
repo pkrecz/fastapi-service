@@ -40,3 +40,8 @@ async def author_list(
 async def author_list():
 	data = list_author()
 	return data
+
+
+@router.get(path="/middleware/")
+async def middleware():
+	return JSONResponse(content={"message": "Middleware"}, status_code=status.HTTP_200_OK)
