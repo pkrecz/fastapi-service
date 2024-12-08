@@ -1,6 +1,7 @@
 import logging
 from config.database import engine
 from config.middleware import CustomMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 
 
 # app_example imports ...
@@ -25,4 +26,9 @@ def load_routers(application):
 
 def load_middleware(application):
     application.add_middleware(CustomMiddleware)
+    application.add_middleware(CORSMiddleware,
+                                allow_origins=["*"],
+                                allow_credentials=True,
+                                allow_methods=["*"],
+                                allow_headers=["*"])
     logger.info("Middleware has been added.")
